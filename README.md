@@ -1,89 +1,79 @@
 <h1 align="center"> Análise Preditiva de Preços de Laptops com Processamento de Texto </h1>
+Descrição
+Projeto desenvolvido para a disciplina de Projeto Aplicado II do curso de Banco de Dados da Universidade Presbiteriana Mackenzie, segundo semestre.
+O foco deste projeto é desenvolver uma análise preditiva de preços de laptops, combinando técnicas de análise exploratória de dados (EDA), processamento de linguagem natural (NLP) e aprendizado de máquina.
+Os dados utilizados foram extraídos de uma base pública disponível no Kaggle, contendo especificações técnicas detalhadas e preços (em euros) de 1.146 modelos de laptops.
+Dataset disponível em: Laptop Prices
 
-## Descrição
-Projeto desenvolvido para a disciplina de **Projeto Aplicado II** do curso de Banco de Dados da Universidade Presbiteriana Mackenzie, terceiro semestre.  
-O foco deste projeto é desenvolver uma análise preditiva de preços de laptops modernos, combinando técnicas de **análise exploratória de dados (EDA)**, **processamento de linguagem natural (NLP)** e **aprendizado de máquina**.  
-Os dados utilizados foram extraídos de uma base pública disponível no Kaggle, contendo informações detalhadas sobre especificações técnicas e preços de laptops comercializados em 2024.  
+Objetivo Principal
+Pergunta central:
+É possível melhorar a predição de preços de laptops extraindo features a partir dos campos de texto do dataset (como modelo de CPU e GPU), comparado a um modelo que usa apenas dados numéricos?
+a) Aquisição e Preparação dos Dados
 
-Dataset disponível em: [Modern Laptop Prices and Specifications](https://www.kaggle.com/datasets/sohaibdevv/modern-laptop-prices-and-specifications)
+Preparação dos Dados:
 
----
+Ingestão do arquivo .csv e remoção da coluna vazia Unnamed: 16.
+Conversão da coluna Ram de string (ex.: "8GB") para numérico.
+Conversão da coluna Cpu Rate de string (ex.: "2.5GHz") para numérico.
+Tratamento de valores ausentes e normalização de strings.
+Armazenamento em banco relacional SQLite com esquema normalizado.
 
-## Objetivo Principal
-**Pergunta central:**  
-É possível melhorar a predição de preços de laptops extraindo features a partir dos campos de texto do dataset (como nome do processador e da GPU), comparado a um modelo que usa apenas dados numéricos?
 
-### a) Aquisição e Preparação dos Dados
-- **Preparação dos Dados:**
-  - Ingestão do arquivo `.csv` e tratamento de valores ausentes.
-  - Normalização de strings (remoção de caracteres especiais, padronização de maiúsculas).
-  - Armazenamento em banco relacional **SQLite** com esquema normalizado (tabelas: Laptop, Marca, Processador, GPU).
 
-### b) Processamento de Texto (NLP)
-- Extração de features das colunas `Processor`, `GPU` e `Model` via **regex** e **tokenização**.
-- Variáveis geradas: fabricante e geração da CPU, se tem GPU dedicada, série da GPU e bag-of-words do nome do modelo (TF-IDF).
+b) Processamento de Texto (NLP)
 
-### c) Análise Estatística Preditiva
-- Distribuição das variáveis e identificação de outliers.
-- Testes de hipótese (Kruskal-Wallis) para comparar preço médio entre marcas.
-- Regressão linear múltipla como baseline.
-- Matriz de correlação entre variáveis numéricas e o preço.
+Extração de features das colunas Cpu Model, Gpu Model e ScreenResolution via regex e tokenização.
+Variáveis geradas: família e geração da CPU, se tem GPU dedicada (Nvidia/AMD), resolução da tela extraída como numérico, e bag-of-words do Product (TF-IDF).
 
-### d) Aprendizado de Máquina
-- **Pergunta-chave:** As features textuais extraídas via NLP melhoram a predição de preço?
-- **Modelos comparados:**
- 
-- **Métricas de avaliação:** 
+c) Análise Estatística Preditiva
 
----
+Distribuição das variáveis e identificação de outliers em Price_euros.
+Testes de hipótese (Kruskal-Wallis) para comparar preço médio entre marcas e tipos de laptop.
+Regressão linear múltipla como baseline.
+Matriz de correlação entre variáveis numéricas e o preço.
 
-## Conclusão Esperada
-Sintetizar os resultados para determinar como cada fator — **marca**, **geração do processador**, **GPU**, **memória RAM** e **armazenamento** — impacta **individualmente** e **coletivamente** o preço final do laptop, e demonstrar o ganho de performance ao incluir features extraídas de texto no modelo preditivo.
+d) Aprendizado de Máquina
 
----
+Pergunta-chave: As features textuais extraídas via NLP melhoram a predição de preço?
+Modelos comparados:
 
-## Dataset
-- `laptop_prices.csv` (usado)
+Regressão Linear (baseline)
+Random Forest Regressor
+Gradient Boosting (XGBoost)
 
-**Variáveis principais:**
 
-| Coluna | Tipo | Descrição |
-|---|---|---|
-| `Brand` | Categórico | Marca do fabricante |
-| `Model` | Texto livre | Nome comercial do produto |
-| `Processor` | Texto semi-estruturado | Nome do processador (fabricante, família, geração) |
-| `RAM (GB)` | Numérico | Memória RAM em GB |
-| `Storage (GB)` | Numérico | Capacidade de armazenamento em GB |
-| `Storage Type` | Categórico | SSD, HDD ou híbrido |
-| `Screen Size` | Numérico | Tamanho da tela em polegadas |
-| `GPU` | Texto semi-estruturado | Modelo da placa gráfica |
-| `Operating System` | Categórico | Sistema operacional |
-| `Price (USD)` | Numérico | **Variável-alvo** — preço em dólares |
+Métricas de avaliação: RMSE, MAE e R² — com validação cruzada de 5 folds.
 
----
 
-## Referências do Dataset
-- **Origem dos Dados:**  
-  O conjunto de dados foi obtido por meio da plataforma **Kaggle**, no dataset *Modern Laptop Prices and Specifications* (https://www.kaggle.com/datasets/sohaibdevv/modern-laptop-prices-and-specifications), publicado pelo usuário **sohaibdevv**.
+Conclusão Esperada
+Sintetizar os resultados para determinar como cada fator — marca, tipo de laptop, CPU, GPU, RAM e armazenamento — impacta individualmente e coletivamente o preço final, e demonstrar o ganho de performance ao incluir features extraídas de texto no modelo preditivo.
 
-- **Originalidade e Limitações:**  
-  Os dados foram coletados via web scraping em varejistas globais de tecnologia durante 2024. Os preços estão em dólares americanos (USD) e podem não refletir variações regionais de mercado.
+Dataset
 
-- **Período da Coleta:**  
-  Produtos disponíveis comercialmente em **2024**.
+Laptop-Price.csv (usado)
 
-- **Limitações de Uso:**  
-  Por se tratar de um dataset público e de fonte secundária, seu uso é destinado a fins acadêmicos e de pesquisa. Os insights devem ser analisados considerando que os dados refletem apenas o catálogo disponível no período de coleta.
+Variáveis:
+ColunaTipoDescriçãoCompanyCategóricoMarca do fabricante (Dell, Lenovo, HP, Asus...)ProductTexto livreNome/modelo do laptopTypeNameCategóricoTipo (Notebook, Ultrabook, Gaming, Workstation...)InchesNuméricoTamanho da tela em polegadasScreenResolutionTextoResolução da tela (ex.: Full HD 1920x1080)RamTexto → NuméricoMemória RAM (ex.: "8GB")OpSysCategóricoSistema operacionalCpu BrandCategóricoFabricante da CPU (Intel, AMD)Cpu ModelTexto semi-estruturadoModelo da CPU — usado no NLPCpu RateTexto → NuméricoClock da CPU em GHz (ex.: "2.5GHz")SSDNuméricoArmazenamento SSD em GBHDDNuméricoArmazenamento HDD em GBFlash StorageNuméricoArmazenamento flash adicional em GBHybridNuméricoArmazenamento híbrido (0/1)Gpu BrandCategóricoFabricante da GPU (Intel, Nvidia, AMD)Gpu ModelTexto semi-estruturadoModelo da GPU — usado no NLPPrice_eurosNuméricoVariável-alvo — preço em euros
 
----
+Referências do Dataset
 
-## Integrantes
+Origem dos Dados:
+O conjunto de dados foi obtido por meio da plataforma Kaggle, no dataset Laptop Prices (https://www.kaggle.com/datasets/abdelrahmanemad594/laptop-prices/data), publicado pelo usuário abdelrahmanemad594.
+Originalidade e Limitações:
+O dataset contém 1.146 registros com especificações técnicas detalhadas de laptops. Os preços estão em euros (€) e podem não refletir variações regionais de mercado. Inclui uma coluna vazia (Unnamed: 16) que será descartada no pré-processamento.
+Período da Coleta:
+Modelos disponíveis comercialmente em 2017–2018.
+Limitações de Uso:
+Por se tratar de um dataset público e de fonte secundária, seu uso é destinado a fins acadêmicos e de pesquisa.
+
+
+Integrantes
 Este projeto foi desenvolvido pelos seguintes integrantes:
 
-- Ryan Rodrigues Pereira
-- Nour Hussein Barakat
-- Guilherme de Araújo Esp. Santo
+Ryan Rodrigues Pereira
+Nour Hussein Barakat
+Guilherme de Araújo Esp. Santo
 
-**Universidade Presbiteriana Mackenzie**  
-**Curso Banco de Dados**  
-**Projeto Aplicado II - 2º Semestre 2025**
+Universidade Presbiteriana Mackenzie
+Curso Banco de Dados
+Projeto Aplicado II - 2º Semestre 2025
