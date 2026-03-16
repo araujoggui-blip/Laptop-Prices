@@ -8,7 +8,9 @@ Dataset disponível em: [Laptop Prices](https://www.kaggle.com/datasets/abdelrah
 Objetivo Principal
 Pergunta central:
 **É possível melhorar a predição de preços de laptops extraindo features a partir dos campos de texto do dataset (como modelo de CPU e GPU), comparado a um modelo que usa apenas dados numéricos?**
-a) Aquisição e Preparação dos Dados
+
+
+**a) Aquisição e Preparação dos Dados**
 
 Preparação dos Dados:
 
@@ -19,25 +21,27 @@ Tratamento de valores ausentes e normalização de strings
 
 
 
-b) Processamento de Texto (NLP)
+**b) Processamento de Texto (NLP)**
 
 Extração de features das colunas Cpu Model, Gpu Model e ScreenResolution via regex e tokenização.
 Variáveis geradas: família e geração da CPU, se tem GPU dedicada (Nvidia/AMD), resolução da tela extraída como numérico, e bag-of-words do Product (TF-IDF).
 
-c) Análise Estatística Preditiva
+
+**c) Análise Estatística Preditiva**
 
 Distribuição das variáveis e identificação de outliers em Price_euros
 Testes de hipótese (Kruskal-Wallis) para comparar preço médio entre marcas e tipos de laptop
 Regressão linear múltipla como baseline
 Matriz de correlação entre variáveis numéricas e o preço
 
-d) Aprendizado de Máquina
+
+**d) Aprendizado de Máquina**
 
 Pergunta-chave: As features textuais extraídas via NLP melhoram a predição de preço?
 
 
 
-Métricas de avaliação: RMSE, MAE e R² — com validação cruzada de 5 folds
+**Métricas de avaliação: RMSE, MAE e R² — com validação cruzada de 5 folds**
 
 
 Conclusão Esperada
