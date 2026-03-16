@@ -43,12 +43,7 @@ Métricas de avaliação: RMSE, MAE e R² — com validação cruzada de 5 folds
 Conclusão Esperada
 **Sintetizar os resultados para determinar como cada fator — marca, tipo de laptop, CPU, GPU, RAM e armazenamento - impacta individualmente e coletivamente o preço final, e demonstrar o ganho de performance ao incluir features extraídas de texto no modelo preditivo.**
 
-Dataset
 
-Laptop-Price.csv (usado)
-
-Variáveis:
-ColunaTipoDescriçãoCompanyCategóricoMarca do fabricante (Dell, Lenovo, HP, Asus...)ProductTexto livreNome/modelo do laptopTypeNameCategóricoTipo (Notebook, Ultrabook, Gaming, Workstation...)InchesNuméricoTamanho da tela em polegadasScreenResolutionTextoResolução da tela (ex.: Full HD 1920x1080)RamTexto → NuméricoMemória RAM (ex.: "8GB")OpSysCategóricoSistema operacionalCpu BrandCategóricoFabricante da CPU (Intel, AMD)Cpu ModelTexto semi-estruturadoModelo da CPU — usado no NLPCpu RateTexto → NuméricoClock da CPU em GHz (ex.: "2.5GHz")SSDNuméricoArmazenamento SSD em GBHDDNuméricoArmazenamento HDD em GBFlash StorageNuméricoArmazenamento flash adicional em GBHybridNuméricoArmazenamento híbrido (0/1)Gpu BrandCategóricoFabricante da GPU (Intel, Nvidia, AMD)Gpu ModelTexto semi-estruturadoModelo da GPU — usado no NLPPrice_eurosNuméricoVariável-alvo — preço em euros
 
 Referências do Dataset
 
@@ -65,9 +60,9 @@ Por se tratar de um dataset público e de fonte secundária, seu uso é destinad
 Integrantes
 Este projeto foi desenvolvido pelos seguintes integrantes:
 
-Ryan Rodrigues Pereira
+**Ryan Rodrigues Pereira
 Nour Hussein Barakat
-Guilherme de Araújo Esp. Santo
+Guilherme de Araújo Esp. Santo**
 
 Universidade Presbiteriana Mackenzie
 Curso Banco de Dados
