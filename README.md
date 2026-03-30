@@ -1,4 +1,4 @@
-# Laptop Prices Prediction with NLP
+# Laptop Price Prediction with NLP
 
 ## Descrição
 
@@ -8,25 +8,25 @@ A proposta consiste em desenvolver uma análise preditiva de preços de laptops,
 
 Os dados utilizados foram obtidos a partir de uma base pública do Kaggle, contendo especificações técnicas detalhadas e preços, em euros, de **1.146 modelos de laptops**.
 
-Dataset: [Laptop Prices](https://www.kaggle.com/datasets/abdelrahmanemad594/laptop-prices?resource=download)
+Dataset: https://www.kaggle.com/datasets/abdelrahmanemad594/laptop-prices/data
 
 ---
 
 ## Organização
 
-Este projeto é desenvolvido pela empresa fictícia **DataPrice Analytics**, especializada em **análise de dados e inteligência de mercado no setor de tecnologia**.
+Este projeto é desenvolvido pela empresa fictícia **DataPrice Analytics**, especializada em análise de dados e inteligência de mercado no setor de tecnologia.
 
-A empresa atua apoiando **varejistas e fabricantes** na definição de estratégias de precificação, utilizando modelos preditivos baseados em dados históricos de produtos.
-
-Nesse contexto, o presente projeto busca prever preços de laptops a partir de suas especificações técnicas, auxiliando decisões estratégicas de mercado.
+A empresa atua apoiando varejistas e fabricantes na definição de estratégias de precificação, utilizando modelos preditivos baseados em dados históricos de produtos.
 
 ---
 
 ## Objetivo Principal
 
-A proposta central do projeto é responder à seguinte pergunta:
+Desenvolver um modelo preditivo capaz de estimar o preço de laptops com base em suas especificações técnicas, avaliando o impacto da inclusão de features extraídas de dados textuais por meio de técnicas de NLP.
 
-**É possível melhorar a predição de preços de laptops extraindo features a partir dos campos de texto do dataset, como modelo de CPU e GPU, em comparação com um modelo que utiliza apenas dados numéricos?**
+Pergunta central:
+
+**É possível melhorar a predição de preços de laptops utilizando dados textuais (CPU, GPU, etc.) em comparação com modelos que utilizam apenas dados numéricos?**
 
 ---
 
@@ -34,64 +34,42 @@ A proposta central do projeto é responder à seguinte pergunta:
 
 ### a) Aquisição e Preparação dos Dados
 
-- Ingestão do arquivo `.csv`
-- Remoção da coluna vazia `Unnamed: 16`
-- Conversão da coluna `Ram` de string (ex.: `8GB`) para formato numérico
-- Conversão da coluna `Cpu Rate` de string (ex.: `2.5GHz`) para formato numérico
-- Tratamento de valores ausentes
-- Padronização e normalização de strings
+- Ingestão do arquivo CSV  
+- Remoção da coluna vazia `Unnamed: 16`  
+- Conversão de variáveis (RAM, CPU) para formato numérico  
+- Tratamento de valores ausentes  
+- Padronização de dados  
 
 ### b) Processamento de Texto (NLP)
 
-- Extração de features das colunas `Cpu Model`, `Gpu Model` e `ScreenResolution`
-- Uso de expressões regulares e tokenização
-- Geração de variáveis como:
-  - família e geração da CPU
-  - presença de GPU dedicada
-  - resolução da tela em formato numérico
-  - representação textual da coluna `Product` com **TF-IDF**
+- Extração de informações de CPU e GPU via regex  
+- Identificação de GPU dedicada  
+- Extração de resolução de tela  
+- Aplicação de TF-IDF na variável Product  
 
-### c) Análise Estatística Preditiva
+### c) Análise Estatística
 
-- Distribuição das variáveis
-- Identificação de outliers em `Price_Euros`
-- Testes de hipótese, como **Kruskal-Wallis**, para comparar preços entre marcas e tipos de laptop
-- Regressão linear múltipla como modelo baseline
-- Matriz de correlação entre variáveis numéricas e o preço
+- Distribuição dos preços  
+- Identificação de outliers  
+- Testes de hipótese (Kruskal-Wallis)  
+- Correlação entre variáveis  
 
-### d) Aprendizado de Máquina
+### d) Machine Learning
 
-- Construção de modelos preditivos para estimar `Price_Euros`
-- Comparação entre modelos com:
-  - apenas variáveis numéricas
-  - variáveis numéricas + features textuais extraídas via NLP
+- Regressão Linear  
+- Random Forest  
+- XGBoost  
+- Comparação entre modelos com e sem NLP  
 
 ---
 
 ## Métricas de Avaliação
 
-O desempenho dos modelos será avaliado com:
+- RMSE  
+- MAE  
+- R²  
 
-- **RMSE** — Root Mean Squared Error
-- **MAE** — Mean Absolute Error
-- **R²** — Coeficiente de Determinação
-
-Também será utilizada **validação cruzada com 5 folds** para aumentar a robustez da avaliação.
-
----
-
-## Análise Exploratória de Dados (EDA)
-
-A análise exploratória considera, entre outros pontos:
-
-- distribuição dos preços dos laptops
-- comparação de preços entre marcas
-- relação entre preço e quantidade de RAM
-- relação entre preço e tipo de armazenamento
-- identificação de outliers
-- correlações entre variáveis numéricas
-
-Essa etapa permite compreender melhor os padrões do conjunto de dados antes da modelagem.
+Validação cruzada com 5 folds.
 
 ---
 
@@ -101,48 +79,6 @@ Essa etapa permite compreender melhor os padrões do conjunto de dados antes da 
 Laptop-Prices/
 │
 ├── data/
-│   └── laptop_prices.csv
-│
 ├── notebooks/
-│   └── laptop_price_analysis.ipynb
-│
 ├── docs/
-│   └── relatorio_etapa_2.docx
-│
 └── README.md
-
----
-
-## Referências do Dataset
-
-O conjunto de dados foi obtido na plataforma Kaggle, no dataset **Laptop Prices**, publicado pelo usuário *abdelrahmanemad594*.
-
- https://www.kaggle.com/datasets/abdelrahmanemad594/laptop-prices/data
-
-O dataset contém aproximadamente **1.146 registros** com especificações técnicas de laptops e preços em euros (€).
-
-### Limitações
-
-- Os preços podem não refletir variações regionais de mercado  
-- Existe uma coluna vazia (`Unnamed: 16`) removida no pré-processamento  
-- Os modelos são referentes ao período de 2017–2018  
-- Uso destinado a fins acadêmicos e de pesquisa  
-
----
-
-## Integrantes
-
-Este projeto foi desenvolvido pelos seguintes integrantes:
-
-- Ryan Rodrigues Pereira  
-- Nour Hussein Barakat  
-- Guilherme de Araújo Esp. Santo  
-
----
-
-## Instituição
-
-Universidade Presbiteriana Mackenzie  
-Curso: Banco de Dados  
-Disciplina: Projeto Aplicado II  
-Semestre: 3º semestre — 2026
