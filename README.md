@@ -111,3 +111,21 @@ Laptop-Prices/
 │   └── relatorio_etapa_2.docx
 │
 └── README.md
+
+---
+
+## Integrantes
+
+Este projeto foi desenvolvido pelos seguintes integrantes:
+
+- Ryan Rodrigues Pereira  
+- Nour Hussein Barakat  
+- Guilherme de Araújo Esp. Santo  
+
+---
+
+## Instituição
+
+Universidade Presbiteriana Mackenzie  
+Curso: Banco de Dados  
+Projeto Aplicado II — 3º semestre — 2026
