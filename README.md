@@ -82,3 +82,40 @@ Laptop-Prices/
 ├── notebooks/
 ├── docs/
 └── README.md
+
+---
+
+## Referências do Dataset
+
+**Origem dos Dados:**  
+O conjunto de dados foi obtido por meio da plataforma Kaggle, no dataset **Laptop Prices**  
+(https://www.kaggle.com/datasets/abdelrahmanemad594/laptop-prices/data), publicado pelo usuário *abdelrahmanemad594*.
+
+**Originalidade e Limitações:**  
+O dataset contém **1.146 registros** com especificações técnicas detalhadas de laptops.  
+Os preços estão em euros (€) e podem não refletir variações regionais de mercado.  
+Inclui uma coluna vazia (`Unnamed: 16`) que será descartada no pré-processamento.
+
+**Período da Coleta:**  
+Modelos disponíveis comercialmente em **2017–2018**.
+
+**Limitações de Uso:**  
+Por se tratar de um dataset público e de fonte secundária, seu uso é destinado a fins acadêmicos e de pesquisa.
+
+---
+
+## Integrantes
+
+Este projeto foi desenvolvido pelos seguintes integrantes:
+
+- Ryan Rodrigues Pereira  
+- Nour Hussein Barakat  
+- Guilherme de Araújo Esp. Santo  
+
+---
+
+## Instituição
+
+Universidade Presbiteriana Mackenzie  
+Curso: Banco de Dados  
+Projeto Aplicado II — 3º semestre — 2026
