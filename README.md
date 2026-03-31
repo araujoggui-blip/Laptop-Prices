@@ -76,11 +76,9 @@ Além disso, busca-se avaliar a viabilidade de prever o valor de mercado de um l
 - pandas
 - numpy
 - matplotlib
-- seaborn
 - scipy
 - scikit-learn
-- xgboost
-- nltk
+
 
 ---
 
